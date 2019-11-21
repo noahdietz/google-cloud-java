@@ -15,8 +15,6 @@
  */
 package com.google.cloud.firestore.v1;
 
-import static com.google.cloud.firestore.v1.FirestoreClient.ListCollectionIdsPagedResponse;
-
 import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.GaxGrpcProperties;
 import com.google.api.gax.grpc.testing.LocalChannelProvider;
@@ -29,20 +27,15 @@ import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.StatusCode;
-import com.google.common.collect.Lists;
-import com.google.firestore.v1.AnyPathName;
 import com.google.firestore.v1.BatchGetDocumentsRequest;
 import com.google.firestore.v1.BatchGetDocumentsResponse;
 import com.google.firestore.v1.BeginTransactionRequest;
 import com.google.firestore.v1.BeginTransactionResponse;
 import com.google.firestore.v1.CommitRequest;
 import com.google.firestore.v1.CommitResponse;
-import com.google.firestore.v1.DatabaseRootName;
 import com.google.firestore.v1.DeleteDocumentRequest;
 import com.google.firestore.v1.Document;
 import com.google.firestore.v1.DocumentMask;
-import com.google.firestore.v1.ListCollectionIdsRequest;
-import com.google.firestore.v1.ListCollectionIdsResponse;
 import com.google.firestore.v1.ListenRequest;
 import com.google.firestore.v1.ListenResponse;
 import com.google.firestore.v1.RollbackRequest;
@@ -156,7 +149,7 @@ public class FirestoreClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockFirestore.addResponse(expectedResponse);
 
-    AnyPathName name = AnyPathName.of("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
+    String name = "name3373707";
 
     client.deleteDocument(name);
 
@@ -164,7 +157,7 @@ public class FirestoreClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteDocumentRequest actualRequest = (DeleteDocumentRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, AnyPathName.parse(actualRequest.getName()));
+    Assert.assertEquals(name, actualRequest.getName());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -178,7 +171,7 @@ public class FirestoreClientTest {
     mockFirestore.addException(exception);
 
     try {
-      AnyPathName name = AnyPathName.of("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
+      String name = "name3373707";
 
       client.deleteDocument(name);
       Assert.fail("No exception raised");
@@ -198,11 +191,11 @@ public class FirestoreClientTest {
             .setTransaction(transaction)
             .build();
     mockFirestore.addResponse(expectedResponse);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+    String database = "database1789464955";
     List<String> documents = new ArrayList<>();
     BatchGetDocumentsRequest request =
         BatchGetDocumentsRequest.newBuilder()
-            .setDatabase(formattedDatabase)
+            .setDatabase(database)
             .addAllDocuments(documents)
             .build();
 
@@ -222,11 +215,11 @@ public class FirestoreClientTest {
   public void batchGetDocumentsExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockFirestore.addException(exception);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+    String database = "database1789464955";
     List<String> documents = new ArrayList<>();
     BatchGetDocumentsRequest request =
         BatchGetDocumentsRequest.newBuilder()
-            .setDatabase(formattedDatabase)
+            .setDatabase(database)
             .addAllDocuments(documents)
             .build();
 
@@ -254,16 +247,16 @@ public class FirestoreClientTest {
         BeginTransactionResponse.newBuilder().setTransaction(transaction).build();
     mockFirestore.addResponse(expectedResponse);
 
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+    String database = "database1789464955";
 
-    BeginTransactionResponse actualResponse = client.beginTransaction(formattedDatabase);
+    BeginTransactionResponse actualResponse = client.beginTransaction(database);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<AbstractMessage> actualRequests = mockFirestore.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     BeginTransactionRequest actualRequest = (BeginTransactionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedDatabase, actualRequest.getDatabase());
+    Assert.assertEquals(database, actualRequest.getDatabase());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -277,9 +270,9 @@ public class FirestoreClientTest {
     mockFirestore.addException(exception);
 
     try {
-      String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+      String database = "database1789464955";
 
-      client.beginTransaction(formattedDatabase);
+      client.beginTransaction(database);
       Assert.fail("No exception raised");
     } catch (InvalidArgumentException e) {
       // Expected exception
@@ -292,17 +285,17 @@ public class FirestoreClientTest {
     CommitResponse expectedResponse = CommitResponse.newBuilder().build();
     mockFirestore.addResponse(expectedResponse);
 
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+    String database = "database1789464955";
     List<Write> writes = new ArrayList<>();
 
-    CommitResponse actualResponse = client.commit(formattedDatabase, writes);
+    CommitResponse actualResponse = client.commit(database, writes);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<AbstractMessage> actualRequests = mockFirestore.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CommitRequest actualRequest = (CommitRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedDatabase, actualRequest.getDatabase());
+    Assert.assertEquals(database, actualRequest.getDatabase());
     Assert.assertEquals(writes, actualRequest.getWritesList());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -317,10 +310,10 @@ public class FirestoreClientTest {
     mockFirestore.addException(exception);
 
     try {
-      String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+      String database = "database1789464955";
       List<Write> writes = new ArrayList<>();
 
-      client.commit(formattedDatabase, writes);
+      client.commit(database, writes);
       Assert.fail("No exception raised");
     } catch (InvalidArgumentException e) {
       // Expected exception
@@ -333,16 +326,16 @@ public class FirestoreClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockFirestore.addResponse(expectedResponse);
 
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+    String database = "database1789464955";
     ByteString transaction = ByteString.copyFromUtf8("-34");
 
-    client.rollback(formattedDatabase, transaction);
+    client.rollback(database, transaction);
 
     List<AbstractMessage> actualRequests = mockFirestore.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     RollbackRequest actualRequest = (RollbackRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedDatabase, actualRequest.getDatabase());
+    Assert.assertEquals(database, actualRequest.getDatabase());
     Assert.assertEquals(transaction, actualRequest.getTransaction());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -357,10 +350,10 @@ public class FirestoreClientTest {
     mockFirestore.addException(exception);
 
     try {
-      String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
+      String database = "database1789464955";
       ByteString transaction = ByteString.copyFromUtf8("-34");
 
-      client.rollback(formattedDatabase, transaction);
+      client.rollback(database, transaction);
       Assert.fail("No exception raised");
     } catch (InvalidArgumentException e) {
       // Expected exception
@@ -378,9 +371,8 @@ public class FirestoreClientTest {
             .setSkippedResults(skippedResults)
             .build();
     mockFirestore.addResponse(expectedResponse);
-    String formattedParent =
-        AnyPathName.format("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
-    RunQueryRequest request = RunQueryRequest.newBuilder().setParent(formattedParent).build();
+    String parent = "parent-995424086";
+    RunQueryRequest request = RunQueryRequest.newBuilder().setParent(parent).build();
 
     MockStreamObserver<RunQueryResponse> responseObserver = new MockStreamObserver<>();
 
@@ -397,9 +389,8 @@ public class FirestoreClientTest {
   public void runQueryExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockFirestore.addException(exception);
-    String formattedParent =
-        AnyPathName.format("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
-    RunQueryRequest request = RunQueryRequest.newBuilder().setParent(formattedParent).build();
+    String parent = "parent-995424086";
+    RunQueryRequest request = RunQueryRequest.newBuilder().setParent(parent).build();
 
     MockStreamObserver<RunQueryResponse> responseObserver = new MockStreamObserver<>();
 
@@ -424,8 +415,8 @@ public class FirestoreClientTest {
     WriteResponse expectedResponse =
         WriteResponse.newBuilder().setStreamId(streamId).setStreamToken(streamToken).build();
     mockFirestore.addResponse(expectedResponse);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
-    WriteRequest request = WriteRequest.newBuilder().setDatabase(formattedDatabase).build();
+    String database = "database1789464955";
+    WriteRequest request = WriteRequest.newBuilder().setDatabase(database).build();
 
     MockStreamObserver<WriteResponse> responseObserver = new MockStreamObserver<>();
 
@@ -445,8 +436,8 @@ public class FirestoreClientTest {
   public void writeExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockFirestore.addException(exception);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
-    WriteRequest request = WriteRequest.newBuilder().setDatabase(formattedDatabase).build();
+    String database = "database1789464955";
+    WriteRequest request = WriteRequest.newBuilder().setDatabase(database).build();
 
     MockStreamObserver<WriteResponse> responseObserver = new MockStreamObserver<>();
 
@@ -470,8 +461,8 @@ public class FirestoreClientTest {
   public void listenTest() throws Exception {
     ListenResponse expectedResponse = ListenResponse.newBuilder().build();
     mockFirestore.addResponse(expectedResponse);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
-    ListenRequest request = ListenRequest.newBuilder().setDatabase(formattedDatabase).build();
+    String database = "database1789464955";
+    ListenRequest request = ListenRequest.newBuilder().setDatabase(database).build();
 
     MockStreamObserver<ListenResponse> responseObserver = new MockStreamObserver<>();
 
@@ -491,8 +482,8 @@ public class FirestoreClientTest {
   public void listenExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockFirestore.addException(exception);
-    String formattedDatabase = DatabaseRootName.format("[PROJECT]", "[DATABASE]");
-    ListenRequest request = ListenRequest.newBuilder().setDatabase(formattedDatabase).build();
+    String database = "database1789464955";
+    ListenRequest request = ListenRequest.newBuilder().setDatabase(database).build();
 
     MockStreamObserver<ListenResponse> responseObserver = new MockStreamObserver<>();
 
@@ -508,56 +499,6 @@ public class FirestoreClientTest {
       Assert.assertTrue(e.getCause() instanceof InvalidArgumentException);
       InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
       Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
-    }
-  }
-
-  @Test
-  @SuppressWarnings("all")
-  public void listCollectionIdsTest() {
-    String nextPageToken = "";
-    String collectionIdsElement = "collectionIdsElement1368994900";
-    List<String> collectionIds = Arrays.asList(collectionIdsElement);
-    ListCollectionIdsResponse expectedResponse =
-        ListCollectionIdsResponse.newBuilder()
-            .setNextPageToken(nextPageToken)
-            .addAllCollectionIds(collectionIds)
-            .build();
-    mockFirestore.addResponse(expectedResponse);
-
-    String formattedParent =
-        AnyPathName.format("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
-
-    ListCollectionIdsPagedResponse pagedListResponse = client.listCollectionIds(formattedParent);
-
-    List<String> resources = Lists.newArrayList(pagedListResponse.iterateAll());
-    Assert.assertEquals(1, resources.size());
-    Assert.assertEquals(expectedResponse.getCollectionIdsList().get(0), resources.get(0));
-
-    List<AbstractMessage> actualRequests = mockFirestore.getRequests();
-    Assert.assertEquals(1, actualRequests.size());
-    ListCollectionIdsRequest actualRequest = (ListCollectionIdsRequest) actualRequests.get(0);
-
-    Assert.assertEquals(formattedParent, actualRequest.getParent());
-    Assert.assertTrue(
-        channelProvider.isHeaderSent(
-            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
-            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
-  }
-
-  @Test
-  @SuppressWarnings("all")
-  public void listCollectionIdsExceptionTest() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
-    mockFirestore.addException(exception);
-
-    try {
-      String formattedParent =
-          AnyPathName.format("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[ANY_PATH]");
-
-      client.listCollectionIds(formattedParent);
-      Assert.fail("No exception raised");
-    } catch (InvalidArgumentException e) {
-      // Expected exception
     }
   }
 }
