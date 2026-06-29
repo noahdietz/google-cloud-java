@@ -13,6 +13,10 @@
     <version>2.102.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-securitycenter:current} -->
   </parent>
   <dependencies>
+    <dependency>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
+    </dependency>
     
     <dependency>
       <groupId>com.google.protobuf</groupId>

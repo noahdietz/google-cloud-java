@@ -13,6 +13,10 @@
     <version>0.94.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-bare-metal-solution:current} -->
   </parent>
   <dependencies>
+    <dependency>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
+    </dependency>
     
     <dependency>
       <groupId>com.google.protobuf</groupId>

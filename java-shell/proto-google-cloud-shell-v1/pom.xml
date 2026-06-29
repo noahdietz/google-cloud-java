@@ -13,6 +13,10 @@
     <version>2.93.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-shell:current} -->
   </parent>
   <dependencies>
+    <dependency>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
+    </dependency>
     
     <dependency>
       <groupId>com.google.protobuf</groupId>
