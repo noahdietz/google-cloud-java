@@ -13,11 +13,7 @@
     <version>0.53.0-SNAPSHOT</version><!-- {x-version-update:ad-manager:current} -->
   </parent>
   <dependencies>
-    <dependency>
-      <groupId>org.jspecify</groupId>
-      <artifactId>jspecify</artifactId>
-    </dependency>
-
+    
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>

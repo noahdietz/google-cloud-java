@@ -12,11 +12,7 @@
     <version>2.73.0-SNAPSHOT</version><!-- {x-version-update:proto-google-common-protos:current} -->
   </parent>
   <dependencies>
-    <dependency>
-      <groupId>org.jspecify</groupId>
-      <artifactId>jspecify</artifactId>
-    </dependency>
-
+    
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
