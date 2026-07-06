@@ -2150,6 +2150,7 @@ libraries:
   - name: kms
     version: 2.97.0-SNAPSHOT
     apis:
+      - path: google/cloud/kms/v2
       - path: google/cloud/kms/v1
         java:
           additional_protos:
@@ -2164,6 +2165,7 @@ libraries:
     java:
       api_description_override: a cloud-hosted key management service that lets you manage cryptographic keys for your cloud services the same way you do on-premises. You can generate, use, rotate, and destroy AES256, RSA 2048, RSA 3072, RSA 4096, EC P256, and EC P384 cryptographic keys. Cloud KMS is integrated with Cloud IAM and Cloud Audit Logging so that you can manage permissions on individual keys and monitor how these are used. Use Cloud KMS to protect secrets and other sensitive data that you need to store in Google Cloud Platform.
       issue_tracker_override: https://issuetracker.google.com/savedsearches/5264932
+      released_version: 0.0.0
       name_pretty_override: Cloud Key Management Service
       product_documentation_override: https://cloud.google.com/kms
   - name: kmsinventory

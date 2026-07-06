@@ -1075,3 +1075,5 @@ google-ads-admob-bom:0.0.0:0.1.0-SNAPSHOT
 proto-google-ads-admob-v1:0.0.0:0.1.0-SNAPSHOT
 grpc-google-ads-admob-v1:0.0.0:0.1.0-SNAPSHOT
 google-ads-admob:0.0.0:0.1.0-SNAPSHOT
+proto-google-cloud-kms-v2:0.0.0:2.97.0-SNAPSHOT
+grpc-google-cloud-kms-v2:0.0.0:2.97.0-SNAPSHOT
