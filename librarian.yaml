@@ -88,6 +88,13 @@ libraries:
       library_type_override: GAPIC_AUTO
       name_pretty_override: Google Ad Manager API
       product_documentation_override: https://developers.google.com/ad-manager/api/beta
+  - name: ads-admob
+    version: 0.1.0-SNAPSHOT
+    apis:
+      - path: google/ads/admob/v1
+    java:
+      artifact_id: google-ads-admob
+      group_id: com.google.api-ads
   - name: advisorynotifications
     version: 0.83.0-SNAPSHOT
     apis:

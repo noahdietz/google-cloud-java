@@ -1070,3 +1070,8 @@ grpc-google-cloud-agentregistry-v1:0.0.0:0.1.0-SNAPSHOT
 google-cloud-agentregistry:0.0.0:0.1.0-SNAPSHOT
 google-cloud-agentregistry-bom:0.0.0:0.1.0-SNAPSHOT
 google-cloud-agentregistry-parent:0.0.0:0.1.0-SNAPSHOT
+google-ads-admob-parent:0.0.0:0.1.0-SNAPSHOT
+google-ads-admob-bom:0.0.0:0.1.0-SNAPSHOT
+proto-google-ads-admob-v1:0.0.0:0.1.0-SNAPSHOT
+grpc-google-ads-admob-v1:0.0.0:0.1.0-SNAPSHOT
+google-ads-admob:0.0.0:0.1.0-SNAPSHOT
