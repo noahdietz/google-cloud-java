@@ -352,6 +352,7 @@ libraries:
   - name: asset
     version: 3.98.0-SNAPSHOT
     apis:
+      - path: google/cloud/asset/v2
       - path: google/cloud/asset/v1
       - path: google/cloud/asset/v1p7beta1
       - path: google/cloud/asset/v1p5beta1
